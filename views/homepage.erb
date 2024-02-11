@@ -1,0 +1,12 @@
+<h1>List of cryptocurrencies available</h1>
+
+<ul>
+  <% @symbols.each do |key, value| %>
+    <li>
+      <a href="/<%= key %>/<%= value %>">
+        Convert 1 <%= key %> to USD...
+      </a>
+      
+    </li>
+  <% end %>
+</ul>
