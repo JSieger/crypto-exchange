@@ -38,3 +38,24 @@ require "json"
     # Render a view template where you show the symbols
     erb(:homepage)
   end
+  get("/:currency/:rate") do
+    # build the API url, including the API key in the query string
+    api_url = "http://api.exchangerate.host/list?access_key=#{ENV["EXCHANGE_KEY"]}"
+  
+    # use HTTP.get to retrieve the API information
+    raw_data = HTTP.get(api_url)
+  
+    # convert the raw request to a string
+    raw_data_string = raw_data.to_s
+  
+    # convert the string to JSON
+    parsed_data = JSON.parse(raw_data_string)
+  
+
+    @currency = params.fetch("currency")
+
+    @result = params.fetch("rate")
+  
+    erb(:currency)
+  
+  end
